@@ -12453,48 +12453,7 @@
    
     }()
     function getBody (){
-        const  e ={
-            "ACTION": {
-                "INIT": "Log1",
-                "DEVICE_UPLOAD": "Log2",
-                "COMBAT_UPLOAD": "Log3"
-            },
-            "ACTION_STATE": {
-                "SUCCESS": "success",
-                "FAIL": "fail"
-            },
-            "DEVICE_TYPE": {
-                "WEB": "W"
-            },
-            "WEB_AES_SECRET_KEY": {
-                "REQ": "8KmHIQsc5+LZJA7uYex3WaHdkjgCtS6epbG/bc9xss0=",
-                "RES": "9NhnQQ+LRrKCkAuxwZaUWGBtSzaFtFlNb/ksJCrCgrM=",
-                "FLAG": "k+1RW0cz3iDi2RAbC/c3QKzTPiVwNmNO1910DXe6Gas=",
-                "UPLOAD": "+fR9tYzlKFr07pEbumd7+KnO3xLOkphCS+qKUbJiMfA=",
-                "PREID": "xLLw/t15vkI7QQBX/1scBbcb9fKx+ymxF0tJ3ds42B0="
-            },
-            "KEY_ID": "LTAI5tGjnK9uu9GbT9GQw72p",
-            "KEY_SECRET": "fpOKzILEajkqgSpr9VvU98FwAgIRcX",
-            "WEB_AES_FLAG_SECRET_KEY": "c175a358550d02e2"
-        };
-        const t = {
-            "sceneId": "5jvar3wp",
-            "appName": "saf-captcha",
-            "appKey": "3795d28242a11619bc25f786f84e53d4",
-            "endpoints": [
-                "https://cloudauth-device.ap-southeast-1.aliyuncs.com",
-                "https://ap-southeast-1.device.saf.aliyuncs.com"
-            ]
-        }
-        const r = {
-            "preCollectData": {
-                "fontsNum": 101
-            },
-            "ENDPOINTS": [
-                "https://cloudauth-device.ap-southeast-1.aliyuncs.com",
-                "https://ap-southeast-1.device.saf.aliyuncs.com"
-            ]
-        }
+
         // console.log(CONCU.sign2(t,r,e))
         var uid =  CONCU.UUID();
         var data = {
