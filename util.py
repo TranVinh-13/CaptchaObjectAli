@@ -57,12 +57,25 @@ def detect_color(hsv_value):
     else:
         
         return "Unknown"
-def detect_color2(hsv_image):
+def remove_gray_background(image):
+    hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    gray_lower = np.array([0, 0, 100])
+    gray_upper = np.array([180, 30, 200])
+    gray_mask = cv2.inRange(hsv_image, gray_lower, gray_upper)
+    inverted_mask = cv2.bitwise_not(gray_mask)
+    cleaned_image = cv2.bitwise_and(image, image, mask=inverted_mask)
+
+    return cleaned_image
+def detect_color_(hsv_image):
+  
     # Define color ranges in HSV space
     
     # Blue: Hue between 100 and 140
-    blue_lower = np.array([100, 150, 50])
-    blue_upper = np.array([140, 255, 255])
+    # blue_lower = np.array([100, 50, 50])
+    # blue_upper = np.array([140, 255, 255])
+    blue_lower = np.array([99,115,150],np.uint8)
+    blue_upper = np.array([110,255,255],np.uint8)
+
     
     # Green: Hue between 35 and 85
     green_lower = np.array([35, 50, 50])
@@ -81,6 +94,8 @@ def detect_color2(hsv_image):
     # Gray: Low saturation and high value
     gray_lower = np.array([0, 0, 100])
     gray_upper = np.array([180, 30, 200])
+    # gray_lower = np.array([66, 3, 121])
+    # gray_upper = np.array([126, 69, 210])
 
     # Convert image to HSV
     hsv_image = cv2.cvtColor(hsv_image, cv2.COLOR_BGR2HSV)
@@ -100,6 +115,10 @@ def detect_color2(hsv_image):
     red_pixels = cv2.countNonZero(red_mask)
     yellow_pixels = cv2.countNonZero(yellow_mask)
     gray_pixels = cv2.countNonZero(gray_mask)
+    if gray_pixels > 4000:
+        gray_pixels = gray_pixels - 2000*(gray_pixels//2000)
+    if blue_pixels > 4000:
+        blue_pixels = blue_pixels - 2000*(blue_pixels//2000)
     
     # Determine the most dominant color
     color_counts = {
@@ -110,10 +129,16 @@ def detect_color2(hsv_image):
         "gray": gray_pixels
     }
 
-    dominant_color = max(color_counts, key=color_counts.get)
+    # dominant_color = max(color_counts, key=color_counts.get)
     
-    return dominant_color
-
+    return color_counts
+def detect_color2(hsv_value):
+    x1 = detect_color_(hsv_value)
+    print(x1)
+    # x2 = detect_color_(remove_gray_background(hsv_value))
+    # x1.update(x2)
+    return max(x1, key=x1.get)
+    
 # print(GetDetect('Please click the blue sphere. '))
 
 
