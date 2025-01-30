@@ -1,0 +1,29 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "lapphuong"
+    },
+    {
+      "id": 1,
+      "name": "lucgiac"
+    },
+    {
+      "id": 2,
+      "name": "non"
+    },
+    {
+      "id": 3,
+      "name": "tron"
+    },
+    {
+      "id": 4,
+      "name": "tru"
+    }
+  ],
+  "info": {
+    "year": 2025,
+    "version": "1.0",
+    "contributor": "Label Studio"
+  }
+}
