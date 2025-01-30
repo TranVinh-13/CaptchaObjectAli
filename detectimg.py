@@ -16,7 +16,7 @@ def solve(image_path, model,prompt):
         label = int(predictions.cls.cpu().numpy()[i]) 
         confidence = predictions.conf.cpu().numpy()[i]
         label_name = model.names[label]
-        cropped_image = image[int(y1+5):int(y2-5), int(x1):int(x2-5)]
+        cropped_image = image[int(y1+5):int(y2), int(x1):int(x2-5)]
         center_x = int((x1 + x2) // 2)
         center_y = int((y1 + y2) // 2)
         # cv2.imshow("Biggest ", cropped_image)
@@ -75,7 +75,7 @@ def solve(image_path, model,prompt):
 
 model = YOLO("best.pt",task="detect")
 if __name__ == "__main__":
-    prompt = "Please click the yellow ball"
-    image_path = '.\\img\\Pleaseclicktheyellowball._c335f0f0-536e-44cb-a1e8-a26760ebe5de.jpg'
+    prompt = "Please click the smallest yellow object."
+    image_path = '.\\img\\Pleaseclickthesmallestyellowobject._1eac5cca-ce7b-401d-8b00-c641adb01700.jpg'
     biggest_cone = solve(image_path, model,prompt)
     print(biggest_cone)
